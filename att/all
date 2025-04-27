@@ -1,0 +1,327 @@
+*****WEEEK-2****
+package exp1;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class MercuryTourRegistration {
+
+	public static void main(String[] args)throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\shire\\OneDrive\\Documents\\drivers\\chroma\\chromedriver-win64\\chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver();
+
+        // a) Launch Mercury Tour site and click Register
+        driver.get("http://demo.guru99.com/test/newtours/");
+        driver.manage().window().maximize();
+        driver.findElement(By.linkText("REGISTER")).click();
+
+        // b) Fill the registration fields
+        driver.findElement(By.name("firstName")).sendKeys("John");
+        driver.findElement(By.name("lastName")).sendKeys("Doe");
+        driver.findElement(By.name("phone")).sendKeys("1234567890");
+        driver.findElement(By.name("userName")).sendKeys("john@example.com");
+        
+        driver.findElement(By.name("email")).sendKeys("johndoe");
+        driver.findElement(By.name("password")).sendKeys("password123");
+        driver.findElement(By.name("confirmPassword")).sendKeys("password123");
+
+        // c) Click submit
+        driver.findElement(By.name("submit")).click();
+
+        // d) Close the site after short pause
+        
+            Thread.sleep(3000); // Wait for 3 seconds to see result
+        
+        driver.quit();	
+
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*****WEEK3****
+package exp3;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+public class facebook {
+
+	public static void main(String[] args)throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\shire\\OneDrive\\Documents\\drivers\\chroma\\chromedriver-win64\\chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        // Open Facebook and click "Create new account"
+        driver.get("https://www.facebook.com/");
+        driver.manage().window().maximize();// allow page to load
+        driver.findElement(By.partialLinkText("Create new account")).click();
+        Thread.sleep(2000); // wait for modal
+
+        // Fill registration form
+        driver.findElement(By.name("firstname")).sendKeys("Greeshma");
+        driver.findElement(By.name("lastname")).sendKeys("Reddy");
+        driver.findElement(By.name("reg_email__")).sendKeys("9885685888");
+        driver.findElement(By.name("reg_passwd__")).sendKeys("gree@13");
+
+        new Select(driver.findElement(By.name("birthday_day"))).selectByValue("13");
+        new Select(driver.findElement(By.name("birthday_month"))).selectByValue("7");
+        new Select(driver.findElement(By.name("birthday_year"))).selectByValue("2006");
+
+        driver.findElement(By.xpath("//input[@value='1']")).click(); // Female radio button
+        driver.findElement(By.name("websubmit")).click();
+        Thread.sleep(1000);
+        driver.quit();	
+}
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*****WEEEK4*****
+package exp4;
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.Alert;
+
+public class PersonalBankingLogin{
+    public static void main(String[] args) throws InterruptedException {
+        // Set path to your chromedriver.exe
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\shire\\OneDrive\\Documents\\drivers\\chroma\\chromedriver-win64\\chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        try {
+            // Open the login page
+            driver.get("https://demo.guru99.com/V1/index.php");
+
+            // Enter username and password
+            WebElement userId = driver.findElement(By.name("uid"));
+            userId.sendKeys("wrongUser");
+
+            WebElement password = driver.findElement(By.name("password"));
+            password.sendKeys("wrongPass");
+
+            // Click the login button
+            WebElement loginBtn = driver.findElement(By.name("btnLogin"));
+            loginBtn.click();
+
+            // Wait and handle alert
+            Thread.sleep(2000);  // Give time for alert to appear
+            Alert alert = driver.switchTo().alert();
+            System.out.println("Alert Text: " + alert.getText());
+            alert.accept(); // Click OK on alert
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Thread.sleep(2000);
+            driver.quit();
+        }
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+*WEEK5*****
+package exp5;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class CMRITResultsSearch {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\shire\\OneDrive\\Documents\\drivers\\chroma\\chromedriver-win64\\chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        try {
+            // Open CMRIT Results portal
+            driver.get("https://results.cmrithyderabad.edu.in/");
+            Thread.sleep(3000);
+
+            // Locate the roll number input field
+            WebElement rollNumberField = driver.findElement(By.id("rollno"));
+            rollNumberField.sendKeys("23r01a05cx"); // Replace with actual roll number
+
+            // Submit the roll number to view results
+            rollNumberField.submit();
+            Thread.sleep(3000);
+
+            // Optional: Capture and print the result page title
+            System.out.println("Page Title: " + driver.getTitle());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------
+****WEEK6*****
+package exp6;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
+public class AJIOCreateAccount {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\shire\\OneDrive\\Documents\\drivers\\chroma\\chromedriver-win64\\chromedriver.exe");
+
+        // Step 2: Initialize WebDriver
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Step 3: Maximize browser and open AJIO
+        driver.manage().window().maximize();
+        driver.get("https://www.ajio.com");
+
+        try {
+            // Step 4: Click "Sign In / Join AJIO"
+            WebElement signIn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Sign In / Join AJIO')]")));
+            signIn.click();
+
+            // Step 5: Wait for modal and input mobile number
+            WebElement mobileInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='username']")));
+            mobileInput.sendKeys("9999999999"); 
+            Thread.sleep(2000);
+
+            // Step 6: Click Continue
+            WebElement continueButton = driver.findElement(By.xpath("//input[@value='Continue']"));
+            continueButton.click();
+
+            // Step 7: OTP verification screen appears
+            System.out.println("OTP screen reached. Manual verification needed.");
+
+        } catch (Exception e) {
+            System.out.println("Error occurred: " + e.getMessage());
+        } finally {
+            // Step 8: Close browser
+            driver.quit();
+		    }
+		}
+}
+
+
+	
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+******WEEK7*******
+package exp7;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
+public class GoogleSearchCMRIT {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\shire\\OneDrive\\Documents\\drivers\\chroma\\chromedriver-win64\\chromedriver.exe");
+
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        driver.get("https://www.google.com");
+        driver.findElement(By.name("q")).sendKeys("CMRIT" + "\n"); // Search for "CMRIT" and press Enter
+        
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+            .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h3")));  // Wait for first result
+        
+        System.out.println("First search result: " + driver.findElement(By.cssSelector("h3")).getText());
+        
+        driver.quit();
+
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+****WEEK9********
+package exp9;
+
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.List;
+
+public class GetListItemsCount {
+    public static void main(String[] args) {
+    	System.setProperty("webdriver.chrome.driver", "C:\\Users\\shire\\OneDrive\\Documents\\drivers\\chroma\\chromedriver-win64\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://www.zomato.com/bangalore/bakeries");  // Replace with your webpage URL
+        List<WebElement> listItems = driver.findElements(By.cssSelector("ul li"));
+        System.out.println("Number of list items: " + listItems.size());
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+*WEEK10******
+package exp10;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+public class GmailRegistrationValidation {
+    public static void main(String[] args) {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\shire\\OneDrive\\Documents\\drivers\\chroma\\chromedriver-win64\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        try {
+            driver.get("https://accounts.google.com/signup");
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+            WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("firstName")));
+            firstName.sendKeys("John");
+
+            WebElement lastName = driver.findElement(By.id("lastName"));
+            lastName.sendKeys("Doe");
+
+            WebElement username = driver.findElement(By.id("username"));
+            username.sendKeys("john.doe.testing987");
+
+            WebElement password = driver.findElement(By.name("Passwd"));
+            password.sendKeys("StrongPass@123");
+
+            WebElement confirmPassword = driver.findElement(By.name("ConfirmPasswd"));
+            confirmPassword.sendKeys("StrongPass@123");
+
+            driver.findElement(By.xpath("//span[text()='Next']")).click();
+
+            Thread.sleep(3000);
+
+            if (driver.getPageSource().contains("Verify your phone number")) {
+                System.out.println("✅ Account form submitted successfully! Proceeding to phone verification.");
+            } else {
+                System.out.println("❌ Validation failed or unexpected page.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Alert alert = driver.switchTo().alert();
+            System.out.println("Alert Text: " + alert.getText());
+            driver.quit()
+;        }
+    }
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------
